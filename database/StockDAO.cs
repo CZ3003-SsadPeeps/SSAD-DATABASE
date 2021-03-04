@@ -7,42 +7,42 @@ using UnityEngine;
 
 namespace Database
 {
-    public class PlayerRecordDAO : SqliteHelper
+    public class StockDAO : SqliteHelper
     {
 
-        private const String TABLE_NAME = "PlayerRecord";
-        private const String KEY_PlayerID = "PlayerID";
-        private const String KEY_Name= "Name";
-        private const String KEY_DateAchieved = "DateAchieved";
-        private const String KEY_CreditEarned = "CreditEarned";
+        private const String TABLE_NAME = "Stock";
+        private const String KEY_CompanyName = "companyName";
+        private const String KEY_Total= "total";
+        private const String KEY_Shares = "shares";
+        private const String KEY_Price = "price";
 
-        public PlayerRecordDAO() : base()
+        public StockDAO() : base()
         {
             IDbCommand dbcmd = getDbCommand();
             dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( " +
-                KEY_PlayerID + " INT PRIMARY KEY, " +
-                KEY_Name + " TEXT NOT NULL, "+
-                KEY_DateAchieved + " TEXT NOT NULL, " +
-                KEY_CreditEarned + " REAL NOT NULL)";
+                KEY_CompanyName + " TEXT PRIMARY KEY, " +
+                KEY_Total+ " INT NOT NULL, "+
+                KEY_Shares + " INT NOT NULL, " +
+                KEY_Price + " REAL NOT NULL)";
             dbcmd.ExecuteNonQuery();
         }
 
-        public void addData(PlayerRecord player)
+        public void addData(Stock Stock)
         {
             IDbCommand dbcmd = getDbCommand();
             dbcmd.CommandText =
                 "INSERT INTO " + TABLE_NAME
                 + " ( "
-                + KEY_PlayerID + ", "
-                + KEY_Name + ", "
-                + KEY_DateAchieved + ", "
-                + KEY_CreditEarned + " ) "
+                + KEY_CompanyName + ", "
+                + KEY_Total+ ", "
+                + KEY_Shares + ", "
+                + KEY_Price + " ) "
 
                 + "VALUES ( '"
-                + player.PlayerID + "', '"
-                + player.Name + "', '"
-                + player.DateAchieved + "', '"
-                + player.CreditEarned + "' )";
+                + Stock.companyName+ "', '"
+                + Stock.total + "', '"
+                + Stock.shares + "', '"
+                + Stock.price + "' )";
             dbcmd.ExecuteNonQuery();
 
         }
@@ -53,14 +53,14 @@ namespace Database
 
                 IDbCommand dbcmd = getDbCommand();
                 dbcmd.CommandText =
-                    "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_PlayerID + " = '" + str + "'";
+                    "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_CompanyName + " = '" + str + "'";
                 return dbcmd.ExecuteReader();
         }
 
         public override  void deleteDataByString(string str)
         {
             IDbCommand dbcmd = db_connection.CreateCommand();
-            dbcmd.CommandText = "DELETE FROM " + TABLE_NAME + " WHERE " + KEY_PlayerID + " = '" + str + "'";
+            dbcmd.CommandText = "DELETE FROM " + TABLE_NAME + " WHERE " + KEY_CompanyName + " = '" + str + "'";
             dbcmd.ExecuteNonQuery();
         }
 
