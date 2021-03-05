@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Database
 {
-    public class PlayerRecordDAO : SqliteHelper
+    public class PlayerRecordDAO : SqliteHelper, IPlayerRecordDAO
     {
 
         private const String TABLE_NAME = "PlayerRecord";
@@ -69,6 +69,34 @@ namespace Database
                 Debug.Log(Tag + "Deleting Table");
 
                 base.deleteAllData(TABLE_NAME);
+        }
+
+        public void doNothing()
+        {
+            Debug.Log("PlayerRecordDAO");
+        }
+
+        public bool StorePlayerRecords(PlayerRecord[] playerRecords)
+        {
+            foreach(PlayerRecord player in playerRecords)
+            {
+                addData(player);
+            }
+            return true;
+        }
+
+        public List<PlayerRecord> RetrievePlayerRecords()
+        {
+            IDbCommand dbcmd = getDbCommand();
+            dbcmd.CommandText =
+                "SELECT * FROM " + TABLE_NAME;
+            System.Data.IDataReader reader = dbcmd.ExecuteReader();
+            List<PlayerRecord> res = new List<PlayerRecord>();
+            while(reader.Read())
+            {
+                res.Add(new PlayerRecord(Convert.ToInt32(reader[0]),reader[1].ToString(),(float)Convert.ToDecimal(reader[3]),reader[2].ToString()));
+            }
+            return res ;
         }
     }
 }

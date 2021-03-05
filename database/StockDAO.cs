@@ -70,5 +70,33 @@ namespace Database
 
                 base.deleteAllData(TABLE_NAME);
         }
+
+        public void doNothing()
+        {
+            Debug.Log("StockDAO");
+        }
+
+        public bool StoreStock(Stock[] Stocks)
+        {
+            foreach(Stock stock in Stocks)
+            {
+                addData(stock);
+            }
+            return true;
+        }
+
+        public List<Stock> RetrieveStocks()
+        {
+            IDbCommand dbcmd = getDbCommand();
+            dbcmd.CommandText =
+                "SELECT * FROM " + TABLE_NAME;
+            System.Data.IDataReader reader = dbcmd.ExecuteReader();
+            List<Stock> res = new List<Stock>();
+            while(reader.Read())
+            {
+                res.Add(new Stock(reader[0].ToString(),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),(float)Convert.ToDecimal(reader[3])));
+            }
+            return res ;
+        }
     }
 }

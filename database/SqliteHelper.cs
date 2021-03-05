@@ -19,6 +19,7 @@ namespace Database
 
         public SqliteHelper()
         {
+            Debug.Log(Tag + "Connected");
             db_connection_string = "URI=file:" + Application.persistentDataPath + "/" + database_name;
             Debug.Log("db_connection_string" + db_connection_string);
             db_connection = new SqliteConnection(db_connection_string);
@@ -27,6 +28,7 @@ namespace Database
 
         ~SqliteHelper()
         {
+            Debug.Log(Tag + "Disconnected");
             db_connection.Close();
         }
 
