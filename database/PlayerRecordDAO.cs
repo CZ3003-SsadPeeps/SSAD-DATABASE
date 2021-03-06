@@ -22,7 +22,7 @@ namespace Database
             dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( " +
                 KEY_PlayerID + " INT PRIMARY KEY, " +
                 KEY_Name + " TEXT NOT NULL, "+
-                KEY_DateAchieved + " TEXT NOT NULL, " +
+                KEY_DateAchieved + " INTEGER NOT NULL, " +
                 KEY_CreditEarned + " REAL NOT NULL)";
             dbcmd.ExecuteNonQuery();
         }
@@ -94,7 +94,7 @@ namespace Database
             List<PlayerRecord> res = new List<PlayerRecord>();
             while(reader.Read())
             {
-                res.Add(new PlayerRecord(Convert.ToInt32(reader[0]),reader[1].ToString(),(float)Convert.ToDecimal(reader[3]),reader[2].ToString()));
+                res.Add(new PlayerRecord(Convert.ToInt32(reader[0]),reader[1].ToString(),(float)Convert.ToDecimal(reader[3]),(long)reader[2]));
             }
             return res ;
         }

@@ -7,9 +7,9 @@ public class PlayerRecord
     public int PlayerID;
     public string Name;
     public float CreditEarned;
-    public string DateAchieved;
+    public long DateAchieved;
 
-    public PlayerRecord(int ID, string name, float credit, string dateAchieved)
+    public PlayerRecord(int ID, string name, float credit, long dateAchieved)
     {
         this.PlayerID=ID;
         this.Name = name;
