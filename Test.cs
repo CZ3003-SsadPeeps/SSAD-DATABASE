@@ -11,6 +11,11 @@ public class Test : MonoBehaviour
         PlayerRecord player1 = new PlayerRecord(5,"abc",123,"date1");
         PlayerRecord player2 = new PlayerRecord(6,"abc",123,"date2");
         PlayerRecordDAO a =  new PlayerRecordDAO();
+
+        //EventRecord event1 = new EventRecord(13, "add money",100);
+        //EventRecordDAO eventRecordDAO = new EventRecordDAO();
+        //eventRecordDAO.addData(event1);
+
         // a.doNothing();
         // a.addData(player1);
         // a.addData(player2);
