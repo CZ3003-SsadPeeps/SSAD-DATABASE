@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Database;
+using System;
 
 public class Test : MonoBehaviour
 {
@@ -51,6 +52,27 @@ public class Test : MonoBehaviour
         //        }
         //    }
         //}
+
+        string[] answers = { "a", "b", "c", "d" };
+
+        QuestionsNAnswers qna1 = new QuestionsNAnswers(1, "why earth is round?", answers,2, 100,"hard");
+        QuestionsNAnswers qna2 = new QuestionsNAnswers(2, "why earth is flat?", answers, 2, 1000, "easy");
+        QuestionsNAnswersDAO questionsNAnswersDAO = new QuestionsNAnswersDAO();
+        questionsNAnswersDAO.addData(qna1);
+        questionsNAnswersDAO.addData(qna2);
+
+        List<QuestionsNAnswers> questionsNAnswers = questionsNAnswersDAO.RetrieveQuestionsNAnswers();
+        foreach (QuestionsNAnswers qq in questionsNAnswers)
+        {
+            Debug.Log(qq.Question);
+            Debug.Log(qq.Credit+0.67);
+            Debug.Log(qq.CorrectAnswer);
+            foreach (string ss in qq.AnswerSelections)
+            {
+                Debug.Log(ss);
+                Debug.Log(Array.IndexOf(qq.AnswerSelections, ss).Equals(qq.CorrectAnswer));
+            }
+        }
 
         // a.doNothing();
         //a.addData(player1);
