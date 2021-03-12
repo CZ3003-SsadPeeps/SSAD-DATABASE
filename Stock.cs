@@ -8,12 +8,14 @@ public class Stock
     public int total;
     public int shares;
     public float price;
+    public int day;
 
-    public Stock(string companyName, int total, int shares, float price)
+    public Stock(string companyName, int total, int shares, int day,float price)
     {
         this.companyName=companyName;
         this.total=total;
         this.shares=shares;
+        this.day =day;
         this.price=price;
     }
 }

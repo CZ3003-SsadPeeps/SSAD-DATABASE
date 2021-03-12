@@ -9,21 +9,23 @@ namespace Database
 {
     public class StockDAO : SqliteHelper
     {
-
         private const String TABLE_NAME = "Stock";
         private const String KEY_CompanyName = "companyName";
         private const String KEY_Total= "total";
         private const String KEY_Shares = "shares";
         private const String KEY_Price = "price";
+        private const String KEY_Day = "day";
 
         public StockDAO() : base()
         {
             IDbCommand dbcmd = getDbCommand();
             dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( " +
-                KEY_CompanyName + " TEXT PRIMARY KEY, " +
+                KEY_CompanyName + " TEXT, " +
                 KEY_Total+ " INT NOT NULL, "+
                 KEY_Shares + " INT NOT NULL, " +
-                KEY_Price + " REAL NOT NULL)";
+                KEY_Day + " INT NOT NULL, " +
+                KEY_Price + " REAL NOT NULL, "+
+                "PRIMARY KEY ("+  KEY_CompanyName +" , " +  KEY_Day +" )) ";
             dbcmd.ExecuteNonQuery();
         }
 
@@ -36,25 +38,28 @@ namespace Database
                 + KEY_CompanyName + ", "
                 + KEY_Total+ ", "
                 + KEY_Shares + ", "
+                + KEY_Day + ", "
                 + KEY_Price + " ) "
 
                 + "VALUES ( '"
                 + Stock.companyName+ "', '"
                 + Stock.total + "', '"
                 + Stock.shares + "', '"
+                + Stock.day + "', '"
                 + Stock.price + "' )";
             dbcmd.ExecuteNonQuery();
 
         }
 
-        public override IDataReader getDataByString(string str)
+        public List<Stock> getDataByString(string str)
         {
                 Debug.Log(Tag + "Getting Location: " + str);
 
                 IDbCommand dbcmd = getDbCommand();
                 dbcmd.CommandText =
                     "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_CompanyName + " = '" + str + "'";
-                return dbcmd.ExecuteReader();
+            System.Data.IDataReader reader = dbcmd.ExecuteReader();
+            return convertToList(reader);
         }
 
         public override  void deleteDataByString(string str)
@@ -91,10 +96,15 @@ namespace Database
             dbcmd.CommandText =
                 "SELECT * FROM " + TABLE_NAME;
             System.Data.IDataReader reader = dbcmd.ExecuteReader();
+            return convertToList(reader);
+        }
+
+        public List<Stock> convertToList(System.Data.IDataReader reader)
+        {
             List<Stock> res = new List<Stock>();
             while(reader.Read())
             {
-                res.Add(new Stock(reader[0].ToString(),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),(float)Convert.ToDecimal(reader[3])));
+                res.Add(new Stock(reader[0].ToString(),Convert.ToInt32(reader[1]),Convert.ToInt32(reader[2]),Convert.ToInt32(reader[3]),(float)Convert.ToDecimal(reader[4])));
             }
             return res ;
         }

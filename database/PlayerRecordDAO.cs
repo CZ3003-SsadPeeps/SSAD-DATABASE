@@ -47,14 +47,14 @@ namespace Database
 
         }
 
-        public override IDataReader getDataByString(string str)
+        public  List<PlayerRecord> getDataByString(string str)
         {
                 Debug.Log(Tag + "Getting Location: " + str);
 
                 IDbCommand dbcmd = getDbCommand();
                 dbcmd.CommandText =
                     "SELECT * FROM " + TABLE_NAME + " WHERE " + KEY_PlayerID + " = '" + str + "'";
-                return dbcmd.ExecuteReader();
+                return convertToList(dbcmd.ExecuteReader());
         }
 
         public override  void deleteDataByString(string str)
@@ -91,6 +91,11 @@ namespace Database
             dbcmd.CommandText =
                 "SELECT * FROM " + TABLE_NAME;
             System.Data.IDataReader reader = dbcmd.ExecuteReader();
+            return convertToList(reader) ;
+        }
+
+        public  List<PlayerRecord> convertToList(System.Data.IDataReader reader)
+        {
             List<PlayerRecord> res = new List<PlayerRecord>();
             while(reader.Read())
             {

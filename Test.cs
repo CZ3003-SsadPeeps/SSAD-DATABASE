@@ -9,8 +9,8 @@ public class Test : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PlayerRecord player1 = new PlayerRecord(5,"abc",123,123);
-        PlayerRecord player2 = new PlayerRecord(6,"abc",123,123);
+        // PlayerRecord player1 = new PlayerRecord(5,"abc",123,123);
+        // PlayerRecord player2 = new PlayerRecord(6,"abc",123,123);
         PlayerRecordDAO a =  new PlayerRecordDAO();
         //a.deleteAllData();
         //EventRecord event1 = new EventRecord(13, "add money", 100);
@@ -53,65 +53,72 @@ public class Test : MonoBehaviour
         //    }
         //}
 
-        string[] answers = { "a", "b", "c", "d" };
+        //string[] answers = { "a", "b", "c", "d" };
 
-        QuestionsNAnswers qna1 = new QuestionsNAnswers(1, "why earth is round?", answers,2, 100,"hard");
-        QuestionsNAnswers qna2 = new QuestionsNAnswers(2, "why earth is flat?", answers, 2, 1000, "easy");
-        QuestionsNAnswersDAO questionsNAnswersDAO = new QuestionsNAnswersDAO();
-        questionsNAnswersDAO.addData(qna1);
-        questionsNAnswersDAO.addData(qna2);
+        //QuestionsNAnswers qna1 = new QuestionsNAnswers(1, "why earth is round?", answers,2, 100,"hard");
+        //QuestionsNAnswers qna2 = new QuestionsNAnswers(2, "why earth is flat?", answers, 2, 1000, "easy");
+        //QuestionsNAnswersDAO questionsNAnswersDAO = new QuestionsNAnswersDAO();
+        //questionsNAnswersDAO.addData(qna1);
+        //questionsNAnswersDAO.addData(qna2);
 
-        List<QuestionsNAnswers> questionsNAnswers = questionsNAnswersDAO.RetrieveQuestionsNAnswers();
-        foreach (QuestionsNAnswers qq in questionsNAnswers)
-        {
-            Debug.Log(qq.Question);
-            Debug.Log(qq.Credit+0.67);
-            Debug.Log(qq.CorrectAnswer);
-            foreach (string ss in qq.AnswerSelections)
-            {
-                Debug.Log(ss);
-                Debug.Log(Array.IndexOf(qq.AnswerSelections, ss).Equals(qq.CorrectAnswer));
-            }
-        }
+        //List<QuestionsNAnswers> questionsNAnswers = questionsNAnswersDAO.RetrieveQuestionsNAnswers();
+        //foreach (QuestionsNAnswers qq in questionsNAnswers)
+        //{
+        //    Debug.Log(qq.Question);
+        //    Debug.Log(qq.Credit+0.67);
+        //    Debug.Log(qq.CorrectAnswer);
+        //    foreach (string ss in qq.AnswerSelections)
+        //    {
+        //        Debug.Log(ss);
+        //        Debug.Log(Array.IndexOf(qq.AnswerSelections, ss).Equals(qq.CorrectAnswer));
+        //    }
+        //}
 
         // a.doNothing();
         //a.addData(player1);
         //a.addData(player2);
-        List<PlayerRecord> players = a.RetrievePlayerRecords();
+        //List<PlayerRecord> players = a.RetrievePlayerRecords();
+        // //a.deleteAllData();
+        // //EventRecord event1 = new EventRecord(13, "add money",100);
+        // //EventRecordDAO eventRecordDAO = new EventRecordDAO();
+        // //eventRecordDAO.addData(event1);
+
+        // // a.doNothing();
+        // a.addData(player1);
+        // a.addData(player2);
+        // List<PlayerRecord> players = a.RetrievePlayerRecords();
+        List<PlayerRecord> players = a.getDataByString("5");
         foreach(PlayerRecord player in players)
         {
             Debug.Log(player.DateAchieved);
         }
-        // // System.Data.IDataReader reader = a.getDataByString("1");
-        // // while(reader.Read())
-        // // {
-        // //     Debug.Log(reader[1].ToString());
-        // // }
 
         // // Delete  all data
-        // // a.deleteAllData();
+        // a.deleteAllData();
         // a.deleteDataByString("1");
 
-        // Stock stock1 = new Stock("Tesla",1000,200,(float) 5.50);
-        // Stock stock2 = new Stock("GME",1000,200,(float) 5.50);
-        // Stock[] stocks = new Stock[2];
+        // StockDAO b = new StockDAO();
+        // b.deleteAllData();
+
+        // b.StoreStock(stocks);
+
+        // Stock stock1 = new Stock("Tesla",1000,200,1,(float) 5.50);
+        // Stock stock2 = new Stock("Tesla",1000,200,2,(float) 5.50);
+        // Stock stock3 = new Stock("GME",1000,200,1,(float) 5.50);
+        // Stock[] stocks = new Stock[3];
         // stocks[0]=stock1;
         // stocks[1]=stock2;
-        // StockDAO b = new StockDAO();
+        // stocks[2]=stock3;
         // b.StoreStock(stocks);
-        // List<Stock> stocks = b.RetrieveStocks();
-        // foreach(Stock stock in stocks)
+
+        // List<Stock> res = b.RetrieveStocks();
+        // List<Stock> res = b.getDataByString("Tesla");
+        // foreach(Stock stock in res)
         // {
         //     Debug.Log(stock.companyName);
         // }
         // b.doNothing();
-        // b.addData(stock1); 
-        // System.Data.IDataReader reader = b.getDataByString("Tesla");
-        // while(reader.Read())
-        // {
-        //     Debug.Log(reader[1].ToString());
-        // }
-        //b.deleteDataByString("Tesla");
+        // b.deleteDataByString("Tesla");
     }
 
     // Update is called once per frame
