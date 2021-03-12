@@ -31,21 +31,44 @@ namespace Database
 
         public void addData(NewsRecord news)
         {
+            try
+            {
+                IDbCommand dbcmd = getDbCommand();
+                dbcmd.CommandText =
+                    "INSERT INTO " + TABLE_NAME
+                    + " ( "
+                    + KEY_NewsID + ", "
+                    + KEY_CompanyName + ", "
+                    + KEY_Content + ", "
+                    + KEY_FluctuationRate + " ) "
+
+                    + "VALUES ( '"
+                    + news.NewsID + "', '"
+                    + news.CompanyName + "', '"
+                    + news.Content + "', '"
+                    + news.FluctuationRate + "' )";
+                dbcmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                Debug.Log("Invalid data key because repeated. Please change a new key");
+
+            }
+
+        }
+
+        public List<NewsRecord> RetrieveNewsRecords()
+        {
             IDbCommand dbcmd = getDbCommand();
             dbcmd.CommandText =
-                "INSERT INTO " + TABLE_NAME
-                + " ( "
-                + KEY_NewsID + ", "
-                + KEY_CompanyName + ", "
-                + KEY_Content + ", "
-                + KEY_FluctuationRate + " ) "
-
-                + "VALUES ( '"
-                + news.NewsID + "', '"
-                + news.CompanyName + "', '"
-                + news.Content + "', '"
-                + news.FluctuationRate + "' )";
-            dbcmd.ExecuteNonQuery();
+                "SELECT * FROM " + TABLE_NAME;
+            System.Data.IDataReader reader = dbcmd.ExecuteReader();
+            List<NewsRecord> res = new List<NewsRecord>();
+            while (reader.Read())
+            {
+                res.Add(new NewsRecord(Convert.ToInt32(reader[0]), reader[1].ToString(), reader[2].ToString(),float.Parse(reader[3].ToString())));
+            }
+            return res;
         }
 
     }

@@ -28,19 +28,42 @@ namespace Database
 
         public void addData(EventRecord eventRecord)
         {
+            try
+            {
+                IDbCommand dbcmd = getDbCommand();
+                dbcmd.CommandText =
+                    "INSERT INTO " + TABLE_NAME
+                    + " ( "
+                    + KEY_EventID + ", "
+                    + KEY_Content + ", "
+                    + KEY_Amount + " ) "
+
+                    + "VALUES ( '"
+                    + eventRecord.EventID + "', '"
+                    + eventRecord.Content + "', '"
+                    + eventRecord.Amount + "' )";
+                dbcmd.ExecuteNonQuery();
+            }
+            catch
+            {
+                Debug.Log("Invalid data key because repeated. Please change a new key");
+
+            }
+
+        }
+
+        public List<EventRecord> RetrieveEventRecords()
+        {
             IDbCommand dbcmd = getDbCommand();
             dbcmd.CommandText =
-                "INSERT INTO " + TABLE_NAME
-                + " ( "
-                + KEY_EventID + ", "
-                + KEY_Content + ", "
-                + KEY_Amount + " ) "
-
-                + "VALUES ( '"
-                + eventRecord.EventID + "', '"
-                + eventRecord.Content + "', '"
-                + eventRecord.Amount + "' )";
-            dbcmd.ExecuteNonQuery();
+                "SELECT * FROM " + TABLE_NAME;
+            System.Data.IDataReader reader = dbcmd.ExecuteReader();
+            List<EventRecord> res = new List<EventRecord>();
+            while (reader.Read())
+            {
+                res.Add(new EventRecord(Convert.ToInt32(reader[0]), reader[1].ToString(), Convert.ToInt32(reader[2])));
+            }
+            return res;
         }
 
     }

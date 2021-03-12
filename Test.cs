@@ -12,13 +12,49 @@ public class Test : MonoBehaviour
         PlayerRecord player2 = new PlayerRecord(6,"abc",123,123);
         PlayerRecordDAO a =  new PlayerRecordDAO();
         //a.deleteAllData();
-        //EventRecord event1 = new EventRecord(13, "add money",100);
+        //EventRecord event1 = new EventRecord(13, "add money", 100);
         //EventRecordDAO eventRecordDAO = new EventRecordDAO();
+        //eventRecordDAO.addData(new EventRecord(14, "deduct money", -100));
+        //List<EventRecord> eventrecords=eventRecordDAO.RetrieveEventRecords();
+        //foreach (EventRecord e in eventrecords)
+        //{
+        //    Debug.Log(e.EventID);
+        //    Debug.Log(e.Amount);
+        //    Debug.Log(e.Content);
+        //}
         //eventRecordDAO.addData(event1);
 
+        //List<QuestionOptionRecord> questionOptions = new List<QuestionOptionRecord>();
+        //QuestionOptionRecord q1 = new QuestionOptionRecord("correct answer", true);
+        //QuestionOptionRecord q2 = new QuestionOptionRecord("wrong answer", false);
+        //questionOptions.Add(q1);
+        //questionOptions.Add(q2);
+        //QuizRecord quiz1 = new QuizRecord(99, "why bla bla", 100, "normal", questionOptions);
+        //QuizRecord quiz2 = new QuizRecord(98, "why bla bla2", 1000, "hard", questionOptions);
+        //QuizRecordDAO quizRecordDAO = new QuizRecordDAO();
+        //quizRecordDAO.addData(quiz1);
+        //quizRecordDAO.addData(quiz2);
+
+        //List<QuizRecord> quizRecords = quizRecordDAO.RetrieveQuizRecords();
+        //foreach (QuizRecord q in quizRecords)
+        //{
+        //    Debug.Log(q.QuizID);
+        //    Debug.Log(q.Difficulty);
+        //    Debug.Log(q.Reward + 20);
+        //    foreach (QuestionOptionRecord qo in q.QuestionOptions)
+        //    {
+        //        Debug.Log(qo.Content);
+        //        Debug.Log(qo.isCorrect);
+        //        if (qo.isCorrect)
+        //        {
+        //            Debug.Log("correct!");
+        //        }
+        //    }
+        //}
+
         // a.doNothing();
-        a.addData(player1);
-        a.addData(player2);
+        //a.addData(player1);
+        //a.addData(player2);
         List<PlayerRecord> players = a.RetrievePlayerRecords();
         foreach(PlayerRecord player in players)
         {
