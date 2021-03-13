@@ -10,8 +10,10 @@ public class Test : MonoBehaviour
     void Start()
     {
         // PlayerRecord player1 = new PlayerRecord(5,"abc",123,123);
-        // PlayerRecord player2 = new PlayerRecord(6,"abc",123,123);
+        PlayerRecord player3 = new PlayerRecord(0,"abc",123,123);
         PlayerRecordDAO a =  new PlayerRecordDAO();
+        // a.deleteAllData();
+        a.addData(player3);
         //a.deleteAllData();
         //EventRecord event1 = new EventRecord(13, "add money", 100);
         //EventRecordDAO eventRecordDAO = new EventRecordDAO();
@@ -87,11 +89,11 @@ public class Test : MonoBehaviour
         // a.addData(player1);
         // a.addData(player2);
         // List<PlayerRecord> players = a.RetrievePlayerRecords();
-        List<PlayerRecord> players = a.getDataByString("5");
-        foreach(PlayerRecord player in players)
-        {
-            Debug.Log(player.DateAchieved);
-        }
+        //List<PlayerRecord> players = a.getDataByString("5");
+        // foreach(PlayerRecord player in players)
+        // {
+        //     Debug.Log(player.DateAchieved);
+        // }
 
         // // Delete  all data
         // a.deleteAllData();

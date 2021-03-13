@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PlayerRecord
 {
-    public int PlayerID;
-    public string Name;
-    public float CreditEarned;
-    public long DateAchieved;
+    public int PlayerID { get; set; }
+    public string Name { get; set; }
+    public float CreditEarned { get; set; }
+    public long DateAchieved { get; set; }
 
     public PlayerRecord(int ID, string name, float credit, long dateAchieved)
     {
-        this.PlayerID=ID;
+        this.PlayerID=0;
         this.Name = name;
         this.CreditEarned = credit;
         this.DateAchieved = dateAchieved;

@@ -20,7 +20,7 @@ namespace Database
         {
             IDbCommand dbcmd = getDbCommand();
             dbcmd.CommandText = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " ( " +
-                KEY_PlayerID + " INT PRIMARY KEY, " +
+                KEY_PlayerID + " INTEGER PRIMARY KEY," +
                 KEY_Name + " TEXT NOT NULL, "+
                 KEY_DateAchieved + " INTEGER NOT NULL, " +
                 KEY_CreditEarned + " REAL NOT NULL)";
@@ -33,13 +33,13 @@ namespace Database
             dbcmd.CommandText =
                 "INSERT INTO " + TABLE_NAME
                 + " ( "
-                + KEY_PlayerID + ", "
+                // + KEY_PlayerID + ", "
                 + KEY_Name + ", "
                 + KEY_DateAchieved + ", "
                 + KEY_CreditEarned + " ) "
 
                 + "VALUES ( '"
-                + player.PlayerID + "', '"
+                // + "NULL" + "', '"
                 + player.Name + "', '"
                 + player.DateAchieved + "', '"
                 + player.CreditEarned + "' )";
