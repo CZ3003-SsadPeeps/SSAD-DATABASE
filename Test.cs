@@ -11,6 +11,7 @@ public class Test : MonoBehaviour
     {
         // PlayerRecord player1 = new PlayerRecord(5,"abc",123,123);
         PlayerRecord player3 = new PlayerRecord(0,"abc",123,123);
+        PlayerRecord player4 = new PlayerRecord(7, "4234", 123, 123);
         PlayerRecordDAO a =  new PlayerRecordDAO();
         // a.deleteAllData();
         a.addData(player3);

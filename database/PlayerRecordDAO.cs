@@ -23,7 +23,7 @@ namespace Database
                 KEY_PlayerID + " INTEGER PRIMARY KEY," +
                 KEY_Name + " TEXT NOT NULL, "+
                 KEY_DateAchieved + " INTEGER NOT NULL, " +
-                KEY_CreditEarned + " REAL NOT NULL)";
+                KEY_CreditEarned + " INTEGER NOT NULL)";
             dbcmd.ExecuteNonQuery();
         }
 
@@ -99,7 +99,7 @@ namespace Database
             List<PlayerRecord> res = new List<PlayerRecord>();
             while(reader.Read())
             {
-                res.Add(new PlayerRecord(Convert.ToInt32(reader[0]),reader[1].ToString(),(float)Convert.ToDecimal(reader[3]),(long)reader[2]));
+                res.Add(new PlayerRecord(Convert.ToInt32(reader[0]),reader[1].ToString(),Convert.ToInt32(reader[3]),(long)reader[2]));
             }
             return res ;
         }

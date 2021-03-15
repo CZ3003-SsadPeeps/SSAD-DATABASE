@@ -7,9 +7,9 @@ public class NewsRecord
     public int NewsID;
     public string CompanyName;
     public string Content;
-    public float FluctuationRate;
+    public int FluctuationRate;
 
-    public NewsRecord(int NewsID,string CompanyName,string Content,float FluctuationRate)
+    public NewsRecord(int NewsID,string CompanyName,string Content,int FluctuationRate)
     {
         this.NewsID = NewsID;
         this.CompanyName = CompanyName;
