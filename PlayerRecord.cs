@@ -1,12 +1,12 @@
 ﻿public class PlayerRecord
 {
-    public int PlayerID { get; set; }
+    public int PlayerID { get; }
 
-    public string Name { get; set; }
+    public string Name { get; }
 
-    public int CreditEarned { get; set; }
+    public int CreditEarned { get; }
 
-    public long DateAchieved { get; set; }
+    public long DateAchieved { get; }
 
     public PlayerRecord(int ID = -1, string name, int credit, long dateAchieved)
     {
