@@ -1,8 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerRecord
+﻿public class PlayerRecord
 {
     public int PlayerID { get; set; }
 
