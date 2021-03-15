@@ -11,7 +11,7 @@ public class PlayerRecord
 
     public PlayerRecord(int ID, string name, float credit, long dateAchieved)
     {
-        this.PlayerID=0;
+        this.PlayerID=ID;
         this.Name = name;
         this.CreditEarned = credit;
         this.DateAchieved = dateAchieved;
