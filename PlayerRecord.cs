@@ -8,7 +8,9 @@
 
     public long DateAchieved { get; }
 
-    public PlayerRecord(int ID = -1, string name, int credit, long dateAchieved)
+    public PlayerRecord(string name, int credit, long dateAchieved): this(-1, name, credit, dateAchieved) {}
+
+    public PlayerRecord(int ID, string name, int credit, long dateAchieved)
     {
         this.PlayerID = ID;
         this.Name = name;
