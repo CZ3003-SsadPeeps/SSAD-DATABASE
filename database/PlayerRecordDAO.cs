@@ -89,19 +89,11 @@ namespace Database
         {
             IDbCommand dbcmd = getDbCommand();
             dbcmd.CommandText =
-                "SELECT * FROM " + TABLE_NAME;
-            System.Data.IDataReader reader = dbcmd.ExecuteReader();
-            return convertToList(reader) ;
-        }
-
-        public List<PlayerRecord> RetrieveTop30PlayerRecords()
-        {
-            IDbCommand dbcmd = getDbCommand();
-            dbcmd.CommandText =
                 "SELECT * FROM " + TABLE_NAME + " ORDER BY " + KEY_CreditEarned + " DESC LIMIT 30";
             System.Data.IDataReader reader = dbcmd.ExecuteReader();
             return convertToList(reader);
         }
+
 
         public  List<PlayerRecord> convertToList(System.Data.IDataReader reader)
         {
